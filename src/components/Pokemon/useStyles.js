@@ -6,7 +6,7 @@ import pokeballSvg from '../../svgs/pokeball.svg';
 const useStyles = () => {
   return resolve`
     div.container {
-      flex: 1 1 30%;
+      flex: 1 1 33.3333%;
       display: flex;
       align-items: center;
       height: 64px;
@@ -27,7 +27,8 @@ const useStyles = () => {
       }
 
       > span {
-        word-break: break-all;
+        flex: 1;
+        word-break: break-word;
       }
     }
   `;
