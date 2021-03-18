@@ -1,8 +1,8 @@
 import React from 'react';
 
-import robotoLight from './Roboto-Light.ttf';
-import robotoRegular from './Roboto-Regular.ttf';
-import robotoMedium from './Roboto-Medium.ttf';
+import robotoLight from './fonts/Roboto-Light.ttf';
+import robotoRegular from './fonts/Roboto-Regular.ttf';
+import robotoMedium from './fonts/Roboto-Medium.ttf';
 
 const useGlobalStyles = () => {
   return <style jsx global>{ `

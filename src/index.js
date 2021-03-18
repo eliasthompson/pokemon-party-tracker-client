@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import 'core-js';
 
-import Container from './Container';
+import Container from './components/Container';
 import reportWebVitals from './reportWebVitals';
 
 render(
