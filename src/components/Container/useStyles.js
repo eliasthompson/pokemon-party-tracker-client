@@ -9,7 +9,7 @@ const useStyles = () => {
       justify-content: space-evenly;
       flex-wrap: wrap;
       overflow: hidden;
-      background-color: black;
+      /* background-color: black; */
       width: 466px;
       height: 128px;
     }

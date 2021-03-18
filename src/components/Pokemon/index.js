@@ -24,6 +24,7 @@ export default function Pokemon({ className: parentClass, pokemon }) {
   species = _.replace(species, '♂', '_m');
   species = _.replace(species, '♀', '_f');
   species = _.replace(species, ' ', '_');
+  species = _.replace(species, '’', '');
   species = _.replace(species, ')', '');
 
   return (

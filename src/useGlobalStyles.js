@@ -60,7 +60,6 @@ const useGlobalStyles = () => {
     }
 
     body {
-      background-color: #111111;
       font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
       color: #FFFFFF;
       font-size: 16px;
