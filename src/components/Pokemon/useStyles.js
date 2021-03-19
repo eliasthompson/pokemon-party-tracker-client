@@ -20,15 +20,33 @@ const useStyles = () => {
         width: 64px;
 
         > img {
+          position: relative;
+          z-index: 2;
           object-fit: contain;
           max-width: 64px;
           max-height: 64px;
+          filter: grayscale(0);
+          transition : filter 0.2s;
         }
       }
 
       > span {
         flex: 1;
         word-break: break-word;
+        opacity: 1;
+        transition : opacity 0.2s;
+      }
+
+      &[data-dead="true"] {
+        > div.sprite {
+          > img {
+            filter: grayscale(1);
+          }
+        }
+
+        > span {
+          opacity: 0.5;
+        }
       }
     }
   `;

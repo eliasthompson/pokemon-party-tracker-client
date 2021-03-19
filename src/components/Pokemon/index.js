@@ -5,6 +5,7 @@ import useStyles from './useStyles';
 
 export default function Pokemon({ className: parentClass, pokemon }) {
   const { className, styles } = useStyles();
+  let src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
   let customClass = className;
   let name = pokemon[5];
   let species = _.toLower(pokemon[5]);
@@ -27,10 +28,12 @@ export default function Pokemon({ className: parentClass, pokemon }) {
   species = _.replace(species, '’', '');
   species = _.replace(species, ')', '');
 
+  if (species) src = `http://www.pkparaiso.com/imagenes/xy/sprites/animados${shiny}/${species}.gif`;
+
   return (
-    <div className={ `${customClass} container` }>
+    <div className={ `${customClass} container` } data-dead={ pokemon[2] }>
       <div className={ `${className} sprite` }>
-        <img className={ className } src={ `http://www.pkparaiso.com/imagenes/xy/sprites/animados${shiny}/${species}.gif` } alt="" />
+        <img className={ className } src={ src } alt="" />
       </div>
 
       <span className={ className }>{ name }</span>

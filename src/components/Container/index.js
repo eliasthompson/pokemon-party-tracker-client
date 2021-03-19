@@ -23,12 +23,12 @@ export default function Container() {
   const getSheetData = useCallback(() => {
     sheetrock({
       url: 'https://docs.google.com/spreadsheets/d/1DCzg9CF0unmAl9Bl1zOoEbVqEo8nHPlbP7XV6MJGG20/edit#gid=1224681356',
-      query: 'SELECT A, B, C, D, E, F WHERE A IS NOT NULL AND F IS NOT NULL AND C = FALSE ORDER BY A ASC',
+      query: 'SELECT A, B, C, D, E, F WHERE A IS NOT NULL AND F IS NOT NULL ORDER BY A ASC',
       reset: true,
       callback: (partyError, partyOptions, partyResponse) => {
         if (!partyError) {
           const rows = _.get(partyResponse, 'raw.table.rows', [[]]);
-          const mappedRows = _.map(rows, (row) =>_.map(row.c, (cell) => (cell) ? cell.v : cell));
+          const mappedRows = _.map(rows, row => _.map(row.c, cell => (cell) ? cell.v : cell));
           const length = mappedRows.length;
 
           if (length < 6) {
@@ -48,7 +48,7 @@ export default function Container() {
           callback: (badgesError, badgesOptions, badgesResponse) => {
             if (!badgesError) {
               const rows = _.get(badgesResponse, 'raw.table.rows', [[]]);
-              const mappedRows = _.map(rows, (row) =>_.map(row.c, (cell) => cell.v));
+              const mappedRows = _.map(rows, row => _.map(row.c, cell => cell.v));
 
               setBadges(mappedRows);
             } else {
@@ -65,8 +65,6 @@ export default function Container() {
   useEffect(() => {
     getSheetData();
   }, [getSheetData]);
-
-  console.log(badges)
 
   return (
     <Fragment>
