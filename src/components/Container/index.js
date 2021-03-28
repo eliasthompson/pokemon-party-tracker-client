@@ -19,6 +19,7 @@ export default function Container() {
   const { className, styles } = useStyles();
   const [badges, setBadges] = useState([[]]);
   const [party, setParty] = useState([[]]);
+  let beatenClass = '';
 
   const getSheetData = useCallback(() => {
     sheetrock({
@@ -31,10 +32,9 @@ export default function Container() {
           const mappedRows = _.map(rows, row => _.map(row.c, cell => (cell) ? cell.v : cell));
           const length = mappedRows.length;
 
-          if (length < 6) {
-            mappedRows.length = 6;
-            mappedRows.fill([], length, 6);
-          }
+          mappedRows.length = 6;
+
+          if (length < 6) mappedRows.fill([], length, 6);
 
           setParty(mappedRows);
         } else {
@@ -48,7 +48,10 @@ export default function Container() {
           callback: (badgesError, badgesOptions, badgesResponse) => {
             if (!badgesError) {
               const rows = _.get(badgesResponse, 'raw.table.rows', [[]]);
+              console.log('rows:', rows);
               const mappedRows = _.map(rows, row => _.map(row.c, cell => cell.v));
+
+              console.log(mappedRows);
 
               setBadges(mappedRows);
             } else {
@@ -62,6 +65,8 @@ export default function Container() {
     setTimeout(getSheetData, 10000);
   }, [setBadges, setParty]);
 
+  if (badges[8]) beatenClass = ' beaten';
+
   useEffect(() => {
     getSheetData();
   }, [getSheetData]);
@@ -69,9 +74,10 @@ export default function Container() {
   return (
     <Fragment>
       <main className={ className }>
+        <span className={ `${className} hall-of-fame${beatenClass}` }>Hall of Fame</span>
         { _.map(party, (row, i) => <Pokemon key={ i } className={ className } pokemon={ row } />) }
 
-        <div className={ `${className} badges` }>
+        <div className={ `${className} badges${beatenClass}` }>
           <img className={ className } src={ bugBadgeIcon } alt="" data-obtained={ badges[0] } />
           <img className={ className } src={ cliffBadgeIcon } alt="" data-obtained={ badges[2] } />
           <img className={ className } src={ rumbleBadgeIcon } alt="" data-obtained={ badges[3] } />
